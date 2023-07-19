@@ -3,41 +3,41 @@ import React from 'react'
 export default function SmallDay(props) {
   let day = ''
 
-  const shortName = () =>{
-    switch(props.day){
-      case 'Sunday' : 
+  const shortName = () => {
+    switch (props.day) {
+      case 'Sunday':
         day = 'Sun'
         break;
-      case 'Monday' : 
+      case 'Monday':
         day = 'Mon'
         break;
-      case 'Tuesday' : 
+      case 'Tuesday':
         day = 'Tue'
         break;
-      case 'Wednesday' : 
+      case 'Wednesday':
         day = 'Wed'
         break;
-      case 'Thursday' : 
+      case 'Thursday':
         day = 'Thu'
         break;
-      case 'Friday' : 
+      case 'Friday':
         day = 'Fri'
         break;
-      case 'Saturday' : 
+      case 'Saturday':
         day = 'Sat'
         break;
       default:
-        day ='error'
-    }  
+        day = 'error'
+    }
   }
 
   shortName()
 
   return (
     <div>
-        {day}
-        <br/>
-        {props.temp}C
+      {day}
+      <br />
+      {props.temp}C
     </div>
   )
 }
