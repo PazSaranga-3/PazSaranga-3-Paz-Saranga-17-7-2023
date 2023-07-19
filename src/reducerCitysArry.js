@@ -12,9 +12,4 @@ export default function reducerCitysArry(state = [], action){ //state = [], acti
       
     }
   }
-  // case 'removAupdate' :
-  //   let newState = [...state]
-  //   let i = newState.findIndex(obj => obj.carNum == action.payload.carNum)
-  //   newState.splice(i,1)
-  //   newState.push(action.payload)
-  //   return newState
+  

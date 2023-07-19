@@ -34,10 +34,10 @@ export default function SmallDay(props) {
   shortName()
 
   return (
-    <div>
+    <div className='small-day'>
       {day}
       <br />
-      {props.temp}C
+      {props.temp !== null ? <div>{props.temp}°C</div> : <div>Loading...</div>}
     </div>
   )
 }

@@ -5,7 +5,7 @@ export default function Today(props) {
     <div>
       {props.data.city}
       <br/>
-      {props.data.temp}C
+      {props.data.temp}°C
     </div>
   )
 }

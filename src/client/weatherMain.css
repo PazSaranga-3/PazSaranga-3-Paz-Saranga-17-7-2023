@@ -1,49 +1,9 @@
 
-/* .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-} */
-/* WeatherMain.css */
-
 .weather-main-container {
   max-width: 500px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #f0f0f0;
+  background-color: #dfd3d3;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
@@ -55,6 +15,13 @@
   border: 1px solid #ccc;
   border-radius: 4px;
   margin-bottom: 10px;
+  box-sizing: border-box; 
+}
+
+.weather-main-container .buttons-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
 }
 
 .weather-main-container button {
@@ -65,29 +32,32 @@
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  margin-right: 10px;
 }
 
-.weather-main-container button:last-child {
-  background-color: #28a745;
-}
 
 .weather-main-container button:hover {
   background-color: #0056b3;
 }
 
 .weather-main-container h3 {
-  margin-top: 0;
+  margin: 30px ;
+  text-align: center;
+
 }
 
 .weather-main-container .days-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  display: flex; 
+  justify-content: space-between; 
+
 }
 
-/* SmallDay component styles */
+.weather-main-container .middle {
+  display: flex; 
+  justify-content: space-between;
+}
+
 .small-day {
+  margin-bottom: 10px;
   padding: 10px;
   background-color: #fff;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
@@ -103,4 +73,32 @@
 .small-day p {
   margin: 5px 0;
   font-size: 16px;
+}
+
+.headers-tab {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.headers-tab button {
+  padding: 10px 15px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.favoritDays{
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #dfd3d3;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex; 
+  justify-content: space-between;
 }
