@@ -3,7 +3,7 @@ import '../client/weatherMain.css'; // Import the CSS file
 import axios from 'axios'
 import SmallDay from './SmallDay'
 import Today from './Today'
-import { changeCity, addFavorit } from '../actionCreator'
+import { changeCity, addFavorit, cityTemp } from '../actionCreator'
 import store from '../store'
 import InFavorit from './InFavorit';
 
@@ -39,15 +39,9 @@ export default function WeatherMain() {
       let cityK = cityResponse.data[0].Key
 
       let url2 = `https://dataservice.accuweather.com/forecasts/v1/daily/5day/${cityK}?apikey=XUQVkH2UwzGG93Qp68cm8xPvD8ISqCYe&metric=true` // 5 days forcast api
-
-      let url3= `http://dataservice.accuweather.com/currentconditions/v1/${cityK}?apikey=XUQVkH2UwzGG93Qp68cm8xPvD8ISqCYe&metric=true`//current day api
-
-    let dayResponse = await axios.get(url3)
-    let temperature = dayResponse.data[0].Temperature.Metric.Value;
-
       let daysResponse = await axios.get(url2)
       console.log(daysResponse);
-      showDays(daysResponse.data.DailyForecasts,temperature)
+      showDays(daysResponse.data.DailyForecasts)
     }
     catch (error) {
       console.error('Error fetching data:', error);
@@ -59,8 +53,8 @@ export default function WeatherMain() {
 
   }
 
-  const showDays = async (days,t) => {
-    // let t = await cityTemp(search)   // city temp funcation is include current weather api
+  const showDays = async (days) => {
+    let t = await cityTemp(search)   // city temp funcation is include current weather api
     changecW({
       city: search,
       weather: days[0].Day.IconPhrase,
@@ -78,9 +72,6 @@ export default function WeatherMain() {
     addFavorit(search)
     console.log(store.getState().reducerCitysArry);
   }
-
-  
-
 
   return (
     <div className='weather-main-container'>
