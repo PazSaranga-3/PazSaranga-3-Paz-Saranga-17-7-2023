@@ -3,7 +3,7 @@ import '../client/weatherMain.css'; // Import the CSS file
 import axios from 'axios'
 import SmallDay from './SmallDay'
 import Today from './Today'
-import { changeCity, addFavorit, cityTemp } from '../actionCreator'
+import { changeCity, addFavorit } from '../actionCreator'
 import store from '../store'
 import InFavorit from './InFavorit';
 
@@ -72,6 +72,26 @@ export default function WeatherMain() {
     addFavorit(search)
     console.log(store.getState().reducerCitysArry);
   }
+
+  const cityTemp = async(city) => {            //return the Temp of today
+  try {
+    
+    let url = `https://dataservice.accuweather.com/locations/v1/cities/search?apikey=RmuQRSmtJUJaipmQEdpFo1grsGt2abOF&q=${city}`
+    let cityResponse = await axios.get(url)
+    let cityK = cityResponse.data[0].Key
+    
+    let url2 = `http://dataservice.accuweather.com/currentconditions/v1/${cityK}?apikey=RmuQRSmtJUJaipmQEdpFo1grsGt2abOF&metric=true`
+    let daysResponse = await axios.get(url2)
+    // console.log(daysResponse);
+    let temperature = daysResponse.data[0].Temperature.Metric.Value;
+    store.dispatch({ type: 'updateTemp', payload: temperature });
+    return store.getState().reducerTemp
+  }
+  catch (error) {
+    console.error('Error fetching data:', error);
+  }
+  
+}
 
 
 
