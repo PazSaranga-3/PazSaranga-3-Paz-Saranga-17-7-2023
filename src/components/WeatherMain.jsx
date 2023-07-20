@@ -39,9 +39,16 @@ export default function WeatherMain() {
       let cityK = cityResponse.data[0].Key
 
       let url2 = `https://dataservice.accuweather.com/forecasts/v1/daily/5day/${cityK}?apikey=RmuQRSmtJUJaipmQEdpFo1grsGt2abOF&metric=true` // 5 days forcast api
+
+      let url3= `http://dataservice.accuweather.com/currentconditions/v1/${cityK}?apikey=RmuQRSmtJUJaipmQEdpFo1grsGt2abOF&metric=true`//current day api
+
+    let dayResponse = await axios.get(url3)
+    let temperature = dayResponse.data[0].Temperature.Metric.Value;
+    store.dispatch({ type: 'updateTemp', payload: temperature });
+
       let daysResponse = await axios.get(url2)
       console.log(daysResponse);
-      showDays(daysResponse.data.DailyForecasts)
+      showDays(daysResponse.data.DailyForecasts,temperature)
     }
     catch (error) {
       console.error('Error fetching data:', error);
@@ -53,8 +60,8 @@ export default function WeatherMain() {
 
   }
 
-  const showDays = async (days) => {
-    let t = await cityTemp(search)   // city temp funcation is include current weather api
+  const showDays = async (days,t) => {
+    // let t = await cityTemp(search)   // city temp funcation is include current weather api
     changecW({
       city: search,
       weather: days[0].Day.IconPhrase,
@@ -73,26 +80,7 @@ export default function WeatherMain() {
     console.log(store.getState().reducerCitysArry);
   }
 
-  const cityTemp = async(city) => {            //return the Temp of today
-  try {
-    
-    let url = `https://dataservice.accuweather.com/locations/v1/cities/search?apikey=RmuQRSmtJUJaipmQEdpFo1grsGt2abOF&q=${city}`
-    let cityResponse = await axios.get(url)
-    let cityK = cityResponse.data[0].Key
-    
-    let url2 = `http://dataservice.accuweather.com/currentconditions/v1/${cityK}?apikey=RmuQRSmtJUJaipmQEdpFo1grsGt2abOF&metric=true`
-    let daysResponse = await axios.get(url2)
-    // console.log(daysResponse);
-    let temperature = daysResponse.data[0].Temperature.Metric.Value;
-    store.dispatch({ type: 'updateTemp', payload: temperature });
-    return store.getState().reducerTemp
-  }
-  catch (error) {
-    console.error('Error fetching data:', error);
-  }
   
-}
-
 
 
   return (
