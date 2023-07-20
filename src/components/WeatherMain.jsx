@@ -34,13 +34,13 @@ export default function WeatherMain() {
     if (isEnglish(search)){
     try {
 
-      let url = `https://dataservice.accuweather.com/locations/v1/cities/search?apikey=RmuQRSmtJUJaipmQEdpFo1grsGt2abOF&q=${search}`   //locationKey api
+      let url = `https://dataservice.accuweather.com/locations/v1/cities/search?apikey=XUQVkH2UwzGG93Qp68cm8xPvD8ISqCYe&q=${search}`   //locationKey api
       let cityResponse = await axios.get(url)
       let cityK = cityResponse.data[0].Key
 
-      let url2 = `https://dataservice.accuweather.com/forecasts/v1/daily/5day/${cityK}?apikey=RmuQRSmtJUJaipmQEdpFo1grsGt2abOF&metric=true` // 5 days forcast api
+      let url2 = `https://dataservice.accuweather.com/forecasts/v1/daily/5day/${cityK}?apikey=XUQVkH2UwzGG93Qp68cm8xPvD8ISqCYe&metric=true` // 5 days forcast api
 
-      let url3= `http://dataservice.accuweather.com/currentconditions/v1/${cityK}?apikey=RmuQRSmtJUJaipmQEdpFo1grsGt2abOF&metric=true`//current day api
+      let url3= `http://dataservice.accuweather.com/currentconditions/v1/${cityK}?apikey=XUQVkH2UwzGG93Qp68cm8xPvD8ISqCYe&metric=true`//current day api
 
     let dayResponse = await axios.get(url3)
     let temperature = dayResponse.data[0].Temperature.Metric.Value;
