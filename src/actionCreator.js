@@ -36,7 +36,9 @@ export const cityTemp = async(city) => {            //return the Temp of today
     let url2 = `http://dataservice.accuweather.com/currentconditions/v1/${cityK}?apikey=RmuQRSmtJUJaipmQEdpFo1grsGt2abOF&metric=true`
     let daysResponse = await axios.get(url2)
     // console.log(daysResponse);
-    return daysResponse.data[0].Temperature.Metric.Value
+    let temperature = daysResponse.data[0].Temperature.Metric.Value;
+    store.dispatch({ type: 'updateTemp', payload: temperature });
+    return store.getState().reducerTemp
   }
   catch (error) {
     console.error('Error fetching data:', error);
