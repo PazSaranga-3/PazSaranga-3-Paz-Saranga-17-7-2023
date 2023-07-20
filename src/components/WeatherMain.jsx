@@ -44,7 +44,6 @@ export default function WeatherMain() {
 
     let dayResponse = await axios.get(url3)
     let temperature = dayResponse.data[0].Temperature.Metric.Value;
-    store.dispatch({ type: 'updateTemp', payload: temperature });
 
       let daysResponse = await axios.get(url2)
       console.log(daysResponse);
