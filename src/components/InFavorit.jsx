@@ -3,7 +3,7 @@ import { checkArry, RemoveFromArr } from '../actionCreator'
 
 export default function InFavorit(props) {
 
-  const isIn = () => {
+  const isIn = () => {                // 
     if(checkArry(props.city)){
       return <div>
           <p style={{margin:'0 10px 0 0',display:'inline-block'}}>In Favorites </p>
